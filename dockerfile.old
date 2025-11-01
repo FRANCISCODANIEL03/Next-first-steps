@@ -1,0 +1,23 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json /
+
+RUN npm install
+
+COPY . /
+
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+
+#Construir la imagen con:
+# docker build -t next-app .
+
+#Ejecutar el contenedor con:
+# docker container run -p 3000:3000 next-app
+# En segundo plano
+# docker container run -dp 3000:3000 next-app
